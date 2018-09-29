@@ -15,12 +15,16 @@ class ShortenersController < ApplicationController
   # POST /shorteners
   # POST /shorteners.json
   def create
-    @shortener = Shortener.abbreviate_url(params[:shortener][:main_domain])
+    unless params[:shortener][:main_domain].blank?
+      @shortener = Shortener.abbreviate_url(params[:shortener][:main_domain])
 
-    if @shortener.save
-      redirect_to @shortener, notice: 'Shortener was successfully created.'
+      if @shortener.save
+        redirect_to root_path, notice: 'Shortener was successfully created.'
+      else
+        redirect_to root_path, alert: "#{@shortener.errors.full_messages.join(', ')}"
+      end
     else
-      render :new
+      redirect_to root_path, alert: "URL can't be blank."
     end
   end
 
@@ -28,7 +32,7 @@ class ShortenersController < ApplicationController
   # DELETE /shorteners/1.json
   def destroy
     @shortener.destroy
-    redirect_to shorteners_url, notice: 'Shortener was successfully destroyed.'
+    redirect_to shorteners_url, notice: 'Shortener was successfully removed.'
   end
 
   private
