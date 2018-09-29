@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shorteners</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Main domain</th>
+      <th>Abbrev</th>
+      <th>Alt domain</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shorteners.each do |shortener| %>
+      <tr>
+        <td><%= shortener.main_domain %></td>
+        <td><%= shortener.abbrev %></td>
+        <td><%= shortener.alt_domain %></td>
+        <td><%= link_to 'Show', shortener %></td>
+        <td><%= link_to 'Destroy', shortener, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shortener', new_shortener_path %>

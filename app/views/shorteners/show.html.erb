@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Main domain:</strong>
+  <%= @shortener.main_domain %>
+</p>
+
+<p>
+  <strong>Abbrev:</strong>
+  <%= @shortener.abbrev %>
+</p>
+
+<p>
+  <strong>Alt domain:</strong>
+  <%= @shortener.alt_domain %>
+</p>
+
+<%= link_to 'Back', shorteners_path %>
