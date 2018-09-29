@@ -1,30 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div id="header-section">
+  <h1>Shorteners (<%= @shorteners.total_count %>)</h1>
 
-<h1>Shorteners</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Main domain</th>
-      <th>Abbrev</th>
-      <th>Alt domain</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @shorteners.each do |shortener| %>
-      <tr>
-        <td><%= shortener.main_domain %></td>
-        <td><%= shortener.abbrev %></td>
-        <td><%= shortener.alt_domain %></td>
-        <td><%= link_to 'Show', shortener %></td>
-        <td><%= link_to 'Destroy', shortener, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+  <p class="pull-right">
+    <%= link_to 'New New', new_shortener_path, class: 'btn btn-sm btn-success' %>
+  </p>
+</div>
 <br>
 
-<%= link_to 'New Shortener', new_shortener_path %>
+<div class="table-responsive-sm">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Main Domain</th>
+        <th>Abbreviation</th>
+        <th>Alternate Domain</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @shorteners.each do |shortener| %>
+        <tr>
+          <td><%= shortener.main_domain %></td>
+          <td><%= link_to shortener.abbrev, "//#{shortener.main_domain}", target: :_blank %></td>
+          <td><li><%= shortener.alt_domain.join('<li>').html_safe %></td>
+          <td><%= link_to 'View', shortener, class: 'btn btn-sm btn-info' %></td>
+          <td><%= link_to 'Remove', shortener, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @shorteners, class: 'pagination', theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm" %>
+
+<br><br>

@@ -1,18 +1,18 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Main domain:</strong>
+  <strong>Main Domain:</strong>
   <%= @shortener.main_domain %>
 </p>
 
 <p>
-  <strong>Abbrev:</strong>
-  <%= @shortener.abbrev %>
+  <strong>Abbreviation:</strong>
+  <%= link_to @shortener.abbrev, "//#{@shortener.main_domain}", target: :_blank %>
 </p>
 
 <p>
-  <strong>Alt domain:</strong>
-  <%= @shortener.alt_domain %>
+  <strong>Alternate Domain:</strong>
+  <ul>
+    <% @shortener.alt_domain.each do |d| %>
+      <li><%= d %></li>
+    <% end %>
+  </ul>
 </p>
-
-<%= link_to 'Back', shorteners_path %>

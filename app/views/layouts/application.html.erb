@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>URLShortener</title>
+    <title>| URL Shortener |</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header_navbar' %>
+
+    <div class="container container-main">
+      <%= render 'layouts/alert_notification' %>
+
+      <%= yield %>
+
+      <br><br>
+    </div>
+
+    <%= render 'layouts/footer_navbar' %>
   </body>
 </html>

@@ -4,7 +4,7 @@ class ShortenersController < ApplicationController
   # GET /shorteners
   # GET /shorteners.json
   def index
-    @shorteners = Shortener.all
+    @shorteners = Shortener.all.order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   # GET /shorteners/new

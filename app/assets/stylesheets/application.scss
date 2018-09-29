@@ -1,0 +1,15 @@
+@import "bootstrap";
+
+.navbar {
+  background-color: #e3f2fd;
+}
+
+div#header-section {
+  & > h1 {
+    display: inline-block;
+  }
+  & > p {
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
